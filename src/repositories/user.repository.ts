@@ -29,12 +29,12 @@ export const deleteUserRepo = async (userId: String): Promise<boolean> => {
 
 export const createUserRepo = async (user: IUserInterface): Promise<boolean> => {
     try {
-       const result=await UserModel.create(user);
-       if (result)
-        return true
-    else
-        return false;
-       return true;
+        const result = await UserModel.create(user);
+        if (result)
+            return true
+        else
+            return false;
+        return true;
     } catch (error) {
 
         console.log(error)
@@ -42,9 +42,24 @@ export const createUserRepo = async (user: IUserInterface): Promise<boolean> => 
     }
 };
 
-export const updateUserRepo = async (userId: String ,updatedUser: IUserInterface): Promise<boolean> => {
+export const updateUserRepo = async (userId: String, updatedUser: IUserInterface): Promise<boolean> => {
     try {
-        const result = await UserModel.findOneAndUpdate({ uid: userId },updatedUser,{new: true})
+        const result = await UserModel.findOneAndUpdate({ uid: userId }, updatedUser, { new: true })
+        if (result)
+            return true
+        else
+            return false;
+    } catch (error) {
+
+        console.log(error)
+        return false;
+    }
+}
+
+//
+export const updateUserWithTweetIDRepo = async (userId: String, tweetId: String): Promise<boolean> => {
+    try {
+        const result = await UserModel.findOneAndUpdate({ uid: userId }, { $push: { tweets: tweetId } }, { new: true })
         if (result)
             return true
         else

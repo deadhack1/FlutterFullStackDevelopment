@@ -63,7 +63,7 @@ const updateUserController = (req, res) => __awaiter(void 0, void 0, void 0, fun
 });
 exports.updateUserController = updateUserController;
 const deleteUserController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.query.userId;
+    const userId = req.params.userId;
     try {
         const success = yield (0, user_repository_1.deleteUserRepo)(userId);
         if (success) {
